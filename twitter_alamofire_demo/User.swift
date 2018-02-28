@@ -19,5 +19,6 @@ class User {
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as! String
 
+
     }
 }
