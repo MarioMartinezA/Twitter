@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class TweetCell: UITableViewCell {
     
@@ -28,6 +29,9 @@ class TweetCell: UITableViewCell {
             
             retweetCountLabel.text = String(tweet.retweetCount)
             likedCountLabel.text = String(tweet.favoriteCount)
+            
+            profileImageView.af_setImage(withURL: tweet.user.profileImage!)
+            
         }
     }
     
