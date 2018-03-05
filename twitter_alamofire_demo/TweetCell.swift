@@ -36,7 +36,7 @@ class TweetCell: UITableViewCell {
             profileImageView.af_setImage(withURL: tweet.user.profileImage!)
             
             if tweet.favorited! {
-                favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: UIControlState.normal)
+                favoriteButton.setImage(UIImage(named: "fretweet-icon.png"), for: UIControlState.normal)
             }
             if tweet.retweeted {
                 retweetButton.setImage(UIImage(named: "favor-icon-red.png"), for: UIControlState.normal)
