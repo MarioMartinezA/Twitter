@@ -20,6 +20,9 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var likedCountLabel: UILabel!
     
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
@@ -31,6 +34,13 @@ class TweetCell: UITableViewCell {
             likedCountLabel.text = String(tweet.favoriteCount)
             
             profileImageView.af_setImage(withURL: tweet.user.profileImage!)
+            
+            if tweet.favorited! {
+                favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: UIControlState.normal)
+            }
+            if tweet.retweeted {
+                retweetButton.setImage(UIImage(named: "favor-icon-red.png"), for: UIControlState.normal)
+            }
             
         }
     }
