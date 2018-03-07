@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 protocol ComposeViewControllerDelegate: NSObjectProtocol {
     func did(post: Tweet)
 }
@@ -17,6 +18,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tweetText: UITextField!
     
     weak var delegate: ComposeViewControllerDelegate?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+
     /*
     // MARK: - Navigation
 

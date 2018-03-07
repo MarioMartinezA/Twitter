@@ -87,7 +87,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let cell = sender as? UITableViewCell {
             if let indexPath = tableView.indexPath(for: cell) {
                 let tweet = tweets[indexPath.row]
@@ -97,6 +96,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }else if let cell = sender as? UIBarButtonItem{
             let composeViewController = segue.destination as! ComposeViewController
             composeViewController.delegate = self
+
         }
         
         

@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
     
     var tweet: Tweet!
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +44,7 @@ class DetailViewController: UIViewController {
         }
         if tweet.retweeted {
             retweetButton.setImage(UIImage(named: "retweet-icon-green.png"), for: UIControlState.normal)
+
         }
         
     }
@@ -118,6 +120,7 @@ class DetailViewController: UIViewController {
             
         }
     }
+
     /*
     // MARK: - Navigation
 
