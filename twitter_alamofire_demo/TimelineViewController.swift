@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
     
@@ -31,6 +31,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         fetchData()
 
     
+    }
+    
+    func did(post: Tweet) {        
+        self.fetchData()
     }
     
     func fetchData() {
@@ -80,6 +84,22 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         refreshControl.endRefreshing()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let cell = sender as? UITableViewCell {
+            if let indexPath = tableView.indexPath(for: cell) {
+                let tweet = tweets[indexPath.row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.tweet = tweet
+            }
+        }else if let cell = sender as? UIBarButtonItem{
+            let composeViewController = segue.destination as! ComposeViewController
+            composeViewController.delegate = self
+        }
+        
+        
     }
     
     /*
