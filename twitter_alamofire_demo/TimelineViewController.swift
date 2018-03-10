@@ -93,10 +93,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 let detailViewController = segue.destination as! DetailViewController
                 detailViewController.tweet = tweet
             }
-        }else if let cell = sender as? UIBarButtonItem{
+        }else if segue.identifier == "composeSegue"{
             let composeViewController = segue.destination as! ComposeViewController
             composeViewController.delegate = self
 
+        }else if segue.identifier == "profileSegue" {
+            print("profile view button")
         }
         
         

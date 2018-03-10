@@ -120,6 +120,15 @@ class DetailViewController: UIViewController {
             
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "replySegue" {
+            print("About to reply")
+            
+            let replyViewController = segue.destination as! ReplyViewController
+            replyViewController.tweet = tweet 
+        }
+    }
 
     /*
     // MARK: - Navigation
