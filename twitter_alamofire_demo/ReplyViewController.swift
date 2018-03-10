@@ -8,15 +8,19 @@
 
 import UIKit
 
-class ReplyViewController: UIViewController {
+class ReplyViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var replyText: UITextField!
+    @IBOutlet weak var replyText: UITextView!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
     var tweet: Tweet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        replyText.delegate = self
+        replyText.isEditable = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,19 +34,35 @@ class ReplyViewController: UIViewController {
         replyTweet["text"] = self.replyText.text! + "@" + tweet.user.screenName
         replyTweet["id"] = tweet.id
         print(tweet.id)
-        print(replyText.text)
-        print(replyTweet["text"]!)
+
         
         APIManager.shared.reply(with: replyTweet) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
             } else if let tweet = tweet {
-                //self.delegate?.did(post: tweet)
                 print("Reply Tweet Success!")
             }
         }
         navigationController?.popViewController(animated: true)
 
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // TODO: Check the proposed new text character count
+        // Allow or disallow the new text
+        
+        // Set the max character limit
+        let characterLimit = 140
+        
+        // Construct what the new text would be if we allowed the user's latest edit
+        let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text)
+        
+        // TODO: Update Character Count Label
+        characterCountLabel.text = String(characterLimit - newText.characters.count)
+        
+        
+        // The new text should be allowed? True/False
+        return newText.characters.count < characterLimit
     }
 
     /*
